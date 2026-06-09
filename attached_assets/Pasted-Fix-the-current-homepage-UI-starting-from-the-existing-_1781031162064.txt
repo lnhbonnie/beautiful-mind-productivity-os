@@ -1,0 +1,411 @@
+Fix the current homepage UI starting from the existing code. Do not redesign from scratch. Keep the current visual direction, but force the approved desktop homepage to fit in one screen without scrolling.
+
+CRITICAL GOAL:
+The entire homepage must fit inside one desktop viewport. The user must see all of this at once:
+
+* top time
+* Today card
+* current focus card
+* Today’s Flow with Morning / Afternoon / Evening
+* * Add task
+* full Next 2 Days section
+* full left nav including Bonnie L
+* full right support rail including First 3 Steps, Future Unlock, Dopamine, Your Wins, Daily Shutdown
+
+Right now the page scrolls and only shows part of Afternoon. That is not acceptable. Compress the layout so the full approved wireframe fits in one desktop screen.
+
+APP SHELL / VIEWPORT:
+Use the full preview viewport, not a tiny artboard and not a scroll page.
+
+Set:
+html, body, #root {
+height: 100%;
+overflow: hidden;
+}
+
+Main app shell:
+height: 100vh;
+overflow: hidden;
+display: grid;
+
+No internal vertical scrolling for the home screen desktop prototype.
+No bottom mobile nav.
+No mobile/tablet collapse at desktop width.
+
+DESKTOP GRID:
+Use this exact grid:
+grid-template-columns: 220px minmax(680px, 1fr) 260px;
+column-gap: 18px;
+padding: 18px 20px;
+
+Left nav = 220px.
+Center = dominant flexible panel.
+Right rail = 260px only. Current right side is too wide / not acting like a real panel.
+
+Add clear subtle vertical dividers:
+
+* between left nav and center
+* between center and right rail
+
+The gap from left nav divider to center content should be 18–24px max.
+The gap from center content to right rail should be 18–24px max.
+Do not leave large empty gutters.
+
+FONT:
+Use Inter globally.
+
+Import Inter if needed.
+CSS:
+font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+
+Do not use Lexend.
+Do not use OpenDyslexic.
+Do not use Poppins.
+Do not use Montserrat.
+Do not use rounded/dizzy fonts.
+
+Weights:
+body: 500
+secondary: 400/450 but still readable
+labels: 600
+task titles: 600
+time: 700
+line-height: 1.32–1.42
+letter-spacing: 0 to 0.005em only
+
+TOP TIME:
+Keep mock time only:
+2:34 PM
+5h 26m until 8:00 PM
+
+Do not use real current time.
+Do not show Day complete.
+Do not put the date in the top clock.
+
+Make header compact:
+Header height: 72–82px max.
+Time: 40–44px, 700.
+Subline: 16–18px, 500.
+Reduce extra top/bottom padding.
+
+BACKGROUND DRAIN:
+The current background is just a flat mint tint. Fix it.
+
+Use one active chapter wash behind the whole page:
+Active chapter = Afternoon
+Color = Fresh mint #BFEFDB
+
+It must feel like a single-color time-drain:
+
+* one color only
+* subtle but visible
+* no rainbow
+* no top progress bar
+* no multiple background colors at once
+
+Implementation direction:
+Create a fixed ::before or background layer behind the app content.
+Use Fresh mint #BFEFDB at about 10–14% opacity.
+Apply a soft vertical opacity mask so the mint wash appears to drain toward neutral.
+Use a feathered edge, not a hard line.
+For this static prototype, set the drain around 65%, since 2:34 PM is inside Afternoon.
+
+Example CSS direction:
+.app::before {
+content: "";
+position: fixed;
+inset: 0;
+pointer-events: none;
+background: #BFEFDB;
+opacity: 0.12;
+mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 88%);
+-webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 88%);
+}
+
+Keep the app surfaces warm/off-white over this background.
+
+LEFT NAV:
+Left nav must be full height.
+Use flex column.
+Bonnie L must be text only and anchored bottom-left.
+
+Fix:
+
+* Add Bonnie L back.
+* Remove any avatar, initials circle, profile icon.
+* Bonnie L should align horizontally with Daily Shutdown on the right rail bottom.
+
+Left nav order:
+Home
+Planning
+Focus
+divider
+High 2
+Medium 3
+Low 4
+Brain Dump 7
+Done 4
+Bonnie L
+
+System icons:
+stroke-only SVG, no fill, no emoji, no colored icon containers.
+
+Priority rings:
+High = red hollow ring
+Medium = yellow hollow ring
+Low = blue hollow ring
+Brain Dump = light purple hollow ring
+Done = green hollow ring
+
+High expanded:
+show visible colorful task icon chip + Build
+show visible colorful task icon chip + Submit
+
+TASK ICONS:
+Task icons must be visible everywhere tasks appear. The current task icons are too weak / inconsistent.
+
+Use colorful rounded task icon chips, 22–26px:
+Build homepage prototype = rocket/build chip
+Submit application = envelope chip
+Break = cup chip
+Warm start = sun chip
+Light admin = clipboard chip
+Light cleanup = brush/broom chip
+Shutdown + tomorrow setup = moon chip
+
+Task icons appear in:
+
+* left nav task rows
+* current focus card
+* Today’s Flow rows
+* Future Unlock current task line if useful
+
+Do not remove task icons.
+Do not make them tiny.
+Do not replace them with generic code icons only.
+
+CENTER CONTENT:
+The center must show the full home story in one viewport.
+
+Order:
+Today · Mon, Jun 8
+Today card
+Current focus card
+Today’s Flow
+
+* Add task
+  divider
+  Next 2 Days
+
+Reduce vertical spacing:
+section gap: 10–14px
+card padding: 12–16px
+Today card height: 52–58px
+current focus card height: 118–132px
+Today’s Flow total height: 290–315px max
+
+* Add task row: 28–32px
+  Next 2 Days height: 95–110px
+
+TODAY SECTION:
+Show:
+Today · Mon, Jun 8
+
+Filled Today card:
+Build homepage prototype
+
+Do not show placeholder when filled.
+
+CURRENT FOCUS CARD:
+Compact card:
+
+* task icon chip
+* Build homepage prototype
+* 62 min left
+* progress bar with 69% inside/on the bar
+* Start focus
+
+The task name must be exactly:
+Build homepage prototype
+
+TODAY’S FLOW:
+The title must be visible and say exactly:
+Today’s Flow
+
+Right now the flow takes too much vertical space and pushes content below the fold. Compress it.
+
+Use exactly three full chapter blocks:
+Morning · 08:00–12:00
+Afternoon · 12:00–16:00
+Evening · 16:00–20:00
+
+Each chapter block must have a full soft background color:
+Morning = #FFE59A at soft opacity
+Afternoon = #BFEFDB at soft opacity
+Evening = #D8D2FF at soft opacity
+
+Each block:
+
+* compact height
+* soft rounded rectangle
+* readable text
+* connected vertical flow line
+* task icons visible
+* row gap 5–7px
+* no huge padding
+
+Rows:
+Morning:
+9:00 task icon + Warm start
+10:00 task icon + Light admin
+
+Afternoon:
+2:30 task icon + Build homepage prototype
+4:00 task icon + Break
+4:15 task icon + Submit application
+
+Evening:
+6:30 task icon + Light cleanup
+7:30 task icon + Shutdown + tomorrow setup
+
+The 2:30 row is current focus and should be calmly highlighted.
+
+After Evening:
+
+* Add task
+  This must be visible before Next 2 Days.
+  Click opens add task modal.
+
+NEXT 2 DAYS:
+This must be fully visible in the first viewport.
+
+Add clear divider above it.
+Title:
+Next 2 Days
+
+Desktop layout:
+Two compact cards side by side.
+
+Card 1:
+Tue, Jun 9
+Tomorrow · 4 tasks
+Submit application · Polish prototype
+
+Card 2:
+Wed, Jun 10
+Day After · 2 tasks
+Follow up · Rest/admin
+
+Do not stack vertically.
+Do not push below fold.
+Do not make it too faint.
+Do not hide it behind scroll.
+
+RIGHT SUPPORT RAIL:
+The right side must be a real full-height panel, not a loose content column.
+
+Right rail width: 260px.
+Height: calc(100vh - header height - page padding).
+Display: flex.
+Flex-direction: column.
+Overflow: hidden.
+
+Top group:
+First 3 Steps
+Future Unlock
+Dopamine
+
+Bottom group:
+Your Wins
+Daily Shutdown
+
+Use margin-top: auto before the bottom group.
+Your Wins must sit directly above Daily Shutdown with 12–16px spacing.
+Daily Shutdown must be bottom-right aligned with Bonnie L.
+Both must be readable, not pale gray.
+
+Right rail content:
+
+First 3 Steps
+Build homepage prototype
+1 Open Replit
+2 Build shell
+3 Add right rail
+
+Future Unlock
+Build homepage prototype
+↓
+Replit submission
+
+* possible interview
+
+Dopamine
+
+Your Wins
+
+Daily Shutdown
+
+Do not add “conversation.”
+Do not add “future possibility.”
+Do not add “dopamine unlock.”
+Do not rename Dopamine.
+Do not rename Your Wins.
+Do not rename Daily Shutdown.
+
+FUNCTIONAL HOVER / CLICK:
+This cannot be static UI only.
+
+Every clickable item must be a real clickable element with:
+cursor: pointer;
+soft hover shade;
+focus-visible style;
+onClick placeholder;
+transition: background 160ms ease, transform 160ms ease;
+
+Hover style:
+background: rgba(34, 25, 70, 0.06);
+border-radius: 12px;
+
+Clickable items:
+Home, Planning, Focus, High, Medium, Low, Brain Dump, Done, task rows, Today card, current focus card, Start focus, First 3 Steps rows, Future Unlock, Dopamine, Your Wins, Daily Shutdown, Bonnie L, Next 2 Days, + Add task.
+
+Click behavior:
+Home → Home page
+Planning → Planning page
+Focus → Focus page
+High / Medium / Low / Brain Dump / Done → expand/filter
+Task rows → focus that task
+Current focus card → task detail drawer
+Start focus → focus mode
+First 3 Steps rows → focus that step
+Future Unlock → full map page
+Dopamine → popup
+Your Wins → stats/wins page
+Daily Shutdown → modal
+Bonnie L → account menu
+Next 2 Days → Planning page
+
+* Add task → add task modal
+
+FINAL QA BEFORE STOPPING:
+
+* Full homepage fits in one desktop viewport.
+* No internal scrolling is needed to see Next 2 Days.
+* No bottom mobile nav.
+* Left nav is 220px.
+* Right rail is 260px.
+* Right rail is a full-height support panel.
+* Center is dominant and compact.
+* Bonnie L is visible bottom-left.
+* Daily Shutdown is visible bottom-right and aligned with Bonnie L.
+* Your Wins is directly above Daily Shutdown.
+* Next 2 Days is visible and side-by-side.
+* Today’s Flow title is visible.
+* Today’s Flow blocks are compact, readable, and colored.
+* Task icons are visible everywhere tasks appear.
+* Background uses active Afternoon mint wash with drain, not flat green tint.
+* All clickable items have functional hover/focus/onClick placeholder.
+* System icons are stroke-only.
+* Priority icons are hollow rings only.
+* Progress percent is inside/on the progress bar.
+* Mock time is fixed: 2:34 PM / 5h 26m until 8:00 PM.

@@ -1,9 +1,6 @@
 :root {
-  --font-primary: 'Atkinson Hyperlegible', 'Nunito Sans', sans-serif;
-  
-  --mint-bg: rgba(191, 239, 219, 0.22);
-  --mint-bg-fade: rgba(191, 239, 219, 0.04);
-  
+  --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
   --color-morning: #FFE59A;
   --color-afternoon: #BFEFDB;
   --color-evening: #D8D2FF;
@@ -13,73 +10,189 @@
   --color-low: #3B82F6;
   --color-braindump: #A78BFA;
   --color-done: #10B981;
-  
-  --text-main: #1F2937;
-  --text-muted: #9CA3AF;
+
+  --text-main: #1a1a2e;
+  --text-muted: #6B7280;
+  --text-secondary: #9CA3AF;
+
+  --surface: rgba(255,255,255,0.72);
+  --border-subtle: rgba(0,0,0,0.055);
 }
 
-body {
+html, body, #root {
+  height: 100%;
+  overflow: hidden;
   margin: 0;
   padding: 0;
 }
 
-.hover-bg:hover {
-  background-color: rgba(0, 0, 0, 0.04) !important;
+* {
+  box-sizing: border-box;
 }
 
-.hover-text:hover {
-  color: #000 !important;
+.app-root {
+  position: relative;
+}
+
+.app-root::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: #BFEFDB;
+  opacity: 0.12;
+  mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 88%);
+  -webkit-mask-image: linear-gradient(to bottom, black 0%, black 65%, transparent 88%);
+}
+
+.clickable {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 160ms ease, transform 160ms ease;
+}
+
+.clickable:hover {
+  background: rgba(34, 25, 70, 0.055) !important;
+}
+
+.clickable:focus-visible {
+  outline: 2px solid rgba(16, 185, 129, 0.5);
+  outline-offset: 1px;
 }
 
 .nav-item {
-  transition: background-color 0.2s;
   cursor: pointer;
+  border-radius: 8px;
+  transition: background 160ms ease;
 }
 
 .nav-item:hover {
-  background-color: rgba(0, 0, 0, 0.03);
+  background: rgba(34, 25, 70, 0.055);
 }
 
 .nav-item.active {
-  background-color: rgba(191, 239, 219, 0.4);
+  background: rgba(191, 239, 219, 0.45);
+}
+
+.nav-item.active:hover {
+  background: rgba(191, 239, 219, 0.6);
 }
 
 .flow-block {
   position: relative;
+  overflow: hidden;
 }
 
 .flow-line {
   position: absolute;
-  left: 14px;
-  top: 40px;
-  bottom: 20px;
+  left: 13px;
+  top: 32px;
+  bottom: 10px;
   width: 2px;
-  background-color: rgba(0,0,0,0.06);
+  background: rgba(0,0,0,0.07);
+  border-radius: 1px;
 }
 
 .task-row {
-  transition: background-color 0.2s;
   cursor: pointer;
+  border-radius: 7px;
+  transition: background 160ms ease;
 }
 
 .task-row:hover {
-  background-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.5);
 }
 
-.task-row.active {
-  background-color: rgba(191, 239, 219, 0.6);
+.task-row.active-row {
+  background: rgba(191, 239, 219, 0.65);
   border-left: 3px solid #10B981;
+  padding-left: 9px !important;
 }
 
-.rail-card {
-  transition: transform 0.2s, background-color 0.2s;
+.rail-clickable {
   cursor: pointer;
+  border-radius: 8px;
+  transition: background 160ms ease;
 }
 
-.rail-card:hover {
-  background-color: rgba(0,0,0,0.02);
+.rail-clickable:hover {
+  background: rgba(34, 25, 70, 0.045) !important;
 }
 
-.pill-button:hover {
-  background-color: rgba(0,0,0,0.05);
+.step-row {
+  cursor: pointer;
+  border-radius: 6px;
+  transition: background 160ms ease;
+  padding: 5px 8px;
+  display: flex;
+  gap: 10px;
+  font-size: 13px;
+  align-items: center;
+}
+
+.step-row:hover {
+  background: rgba(34, 25, 70, 0.05);
+}
+
+.add-task-btn {
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.add-task-btn:hover {
+  background: rgba(34, 25, 70, 0.055);
+  color: var(--text-main);
+}
+
+.start-focus-btn {
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  padding: 4px 0;
+  border-radius: 4px;
+  transition: color 160ms ease;
+  background: none;
+  border: none;
+}
+
+.start-focus-btn:hover {
+  color: #10B981;
+}
+
+.next2days-card {
+  cursor: pointer;
+  border-radius: 10px;
+  transition: background 160ms ease;
+  background: rgba(255,255,255,0.42);
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.next2days-card:hover {
+  background: rgba(255,255,255,0.7) !important;
+}
+
+.bonnie-btn {
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: background 160ms ease, color 160ms ease;
+}
+
+.bonnie-btn:hover {
+  background: rgba(34, 25, 70, 0.055);
+  color: var(--text-main);
 }
