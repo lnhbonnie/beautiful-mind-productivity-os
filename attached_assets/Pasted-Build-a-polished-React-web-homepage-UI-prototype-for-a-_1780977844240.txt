@@ -1,0 +1,484 @@
+Build a polished React web homepage UI prototype for a calm, visual time-planning app for ADHD, autistic/neurodivergent users, and creative workers such as dancers, teachers, artists, creators, solopreneurs, and people who need help seeing time, starting tasks, and connecting today’s work to future outcomes.
+
+This is a homepage UI prototype only.
+
+Do not build login.
+Do not build onboarding.
+Do not build Airtable/database/backend.
+Do not build settings yet.
+Use mock data only.
+
+The goal is to build the approved desktop homepage exactly.
+
+CRITICAL BASE44 LEARNINGS / DO NOT REPEAT THESE MISTAKES:
+
+* Do not collapse the desktop layout into mobile/tablet.
+* Do not add a bottom mobile navigation bar on desktop.
+* Do not center the app into one skinny column.
+* Do not create a mini artboard inside the page.
+* Do not hide the right support rail.
+* Do not remove task icons.
+* Do not create huge gutters between columns.
+* Do not make Your Wins / Daily Shutdown too faint.
+* Do not use filled system icons.
+* Do not use avatar/initials icon beside Bonnie L.
+
+TECH STACK:
+Use React.
+Use CSS for layout/styling.
+Create clean components:
+
+* App
+* TopTimeHeader
+* LeftNav
+* TodayOneThing
+* CurrentFocusCard
+* TodaysFlow
+* NextTwoDays
+* RightSupportRail
+* ChapterBlock
+* TaskIconChip
+
+Use mock data in the same file or a simple mockData object. No API.
+
+DESKTOP LAYOUT:
+Use a full viewport desktop web layout.
+
+Use CSS grid:
+
+grid-template-columns: 240px minmax(640px, 1fr) 320px;
+
+Left nav = 240px fixed.
+Center = flexible.
+Right rail = 320px fixed.
+
+Outer page padding: 24px.
+Column gap: 24px.
+Left nav to center: 24px only.
+Center to right rail: 24px only.
+
+Add subtle vertical separators:
+
+* between left nav and center
+* between center and right rail
+
+Do not leave a giant empty gutter.
+Do not center the center column with huge blank space around it.
+The app should fill the screen.
+
+TOP TIME HEADER:
+The time header spans across the main content area above the center/right layout.
+
+Use fixed mock state:
+Line 1: “2:34 PM”
+
+* 40–44px
+* bold
+* centered
+
+Line 2: “5h 26m until 8:00 PM”
+
+* 16–18px
+* medium weight
+* centered
+
+Do not show “Day complete.”
+Do not use real current time.
+Do not put the date in the top clock.
+The date belongs in the Today section.
+
+BACKGROUND TIME SYSTEM:
+Use one active chapter color wash behind the whole page.
+For this mock state, active chapter is Afternoon.
+
+Active wash:
+Fresh mint #BFEFDB
+Very soft opacity.
+Use one color only.
+No multicolor background.
+No rainbow gradient.
+No top progress bar.
+
+Implement as a soft background layer across the page.
+Use a single-color opacity mask / subtle vertical drain effect.
+The drain should feel like the active chapter color is gently draining toward neutral as time passes.
+
+Default chapter colors:
+Morning: Sunrise yellow #FFE59A
+Afternoon: Fresh mint #BFEFDB
+Evening: Soft lavender #D8D2FF
+
+At chapter boundaries, use the concept of a soft page-turn transition:
+old chapter color fades out and next chapter color fades in over about 0.3s.
+For this static prototype, just implement the visual state for Afternoon active.
+
+VISUAL SYSTEM:
+Calm technology + Headspace-style wellness UI + neurodivergent-friendly structure + creative/artist-friendly warmth.
+
+The UI should feel:
+
+* calm
+* warm
+* clear
+* lightly playful
+* emotionally motivating
+* visual
+* not corporate
+* not childish
+* not noisy
+* not beige sleepy
+
+Font:
+Use Atkinson Hyperlegible if available. If not, use Nunito Sans or a warm humanist sans-serif.
+Do not use OpenDyslexic.
+
+Typography:
+
+* Time: 40–44px bold
+* Work-window line: 16–18px medium
+* Today label: 16px semibold
+* Main task title: 20–22px semibold
+* Section labels: 15–16px semibold
+* Body rows: 14–15px regular
+* Placeholder text: 14–15px muted
+
+SYSTEM ICON RULES:
+System icons must be custom inline SVG or stroke-only icon style.
+No fill.
+No emoji.
+No colored icon containers.
+
+System icons:
+
+* Home = outline home icon
+* Planning = outline calendar icon
+* Focus = calm outline pen/leaf/lotus-style icon
+* First 3 Steps = outline sparkle icon
+* Future Unlock = outline lock icon
+* Dopamine = outline gift icon
+* Your Wins = outline chart icon
+* Daily Shutdown = outline moon icon
+
+PRIORITY / STATUS ICON RULES:
+Use colored hollow rings only:
+
+* High = red hollow ring
+* Medium = yellow hollow ring
+* Low = blue hollow ring
+* Brain Dump = light purple hollow ring
+* Done = green hollow ring
+
+No flags.
+No checkmarks.
+No filled priority/status icons.
+
+TASK ICON RULES:
+Task icons are the only icons allowed to be colorful/personalized.
+
+Use visible colorful task icon chips, 24–32px:
+
+* Build homepage prototype = colorful rocket/build icon chip
+* Submit application = colorful envelope icon chip
+* Break = colorful coffee/cup icon chip
+* Warm start = colorful sun icon chip
+* Light admin = colorful clipboard icon chip
+* Light cleanup = colorful brush/broom icon chip
+* Shutdown + tomorrow setup = colorful moon icon chip
+
+Do not remove task icons.
+Do not replace task icons with generic code icons.
+Task icons must appear in:
+
+* left nav expanded High task rows
+* current focus card
+* Today’s Flow rows
+* Future Unlock current task line if useful
+
+LEFT NAV:
+Order exactly:
+
+1. Home
+2. Planning
+3. Focus
+4. divider
+5. High 2
+6. Medium 3
+7. Low 4
+8. Brain Dump 7
+9. Done 4
+10. Bonnie L at bottom-left
+
+Home:
+
+* outline home icon
+* active state
+* click → Home page
+
+Planning:
+
+* outline calendar icon
+* click → Planning page
+
+Focus:
+
+* calm stroke-only icon
+* no fill
+* click → Focus page
+
+High:
+
+* red hollow ring
+* expanded by default
+* show two task rows:
+
+  * task icon + Build
+  * task icon + Submit
+
+Medium / Low / Brain Dump / Done:
+
+* show hollow ring + label + count
+* collapsed by default
+
+Bonnie L:
+
+* text only
+* no avatar
+* no initials circle
+* anchored bottom-left
+* click → account menu
+
+CENTER:
+Order exactly:
+
+1. Today · Mon, Jun 8
+2. Today card
+3. Current focus card
+4. Today’s Flow
+5. * Add task
+6. divider
+7. Next 2 Days
+
+TODAY SECTION:
+Label:
+“Today · Mon, Jun 8”
+
+Today card filled state:
+Card text:
+“Build homepage prototype”
+
+Do not show placeholder when filled.
+
+Build empty-state logic in code as a comment or conditional, but show filled state in the prototype.
+
+Empty state should be:
+Line 1: “Name the 1 thing you want to finish today”
+Line 2: “e.g. Build homepage prototype”
+Placeholder should be muted/faint.
+
+CURRENT FOCUS CARD:
+Card content:
+
+* colorful task icon chip
+* “Build homepage prototype”
+* “62 min left”
+* progress bar with “69%” inside/on the bar
+* “Start focus” as a clean text action, not a loud button
+
+The task name must be exactly the same everywhere:
+“Build homepage prototype”
+
+TODAY’S FLOW:
+Use exactly three full chapter blocks.
+
+Each chapter block must have:
+
+* soft rounded rectangle background
+* full block color wash
+* readable text
+* a subtle connected vertical flow line inside the block
+* calm spacing
+* no huge gaps
+* no tiny-only color dot treatment
+
+Important:
+The full page background uses only the active chapter color.
+The Today’s Flow section can show all three chapter block colors because those are the schedule blocks themselves.
+
+Chapter 1:
+Morning · 08:00–12:00
+Background: Sunrise yellow #FFE59A at soft opacity
+Rows:
+9:00 task icon + Warm start
+10:00 task icon + Light admin
+
+Chapter 2:
+Afternoon · 12:00–16:00
+Background: Fresh mint #BFEFDB at soft opacity
+Rows:
+2:30 task icon + Build homepage prototype
+4:00 task icon + Break
+4:15 task icon + Submit application
+The 2:30 row is the current focus row. Highlight it calmly.
+
+Chapter 3:
+Evening · 16:00–20:00
+Background: Soft lavender #D8D2FF at soft opacity
+Rows:
+6:30 task icon + Light cleanup
+7:30 task icon + Shutdown + tomorrow setup
+
+After Evening:
+Show:
+“+ Add task”
+Readable, secondary, clickable.
+Click opens add task modal.
+
+NEXT 2 DAYS:
+Add a clear divider above this section.
+Title:
+“Next 2 Days”
+
+Desktop layout:
+Two compact cards side by side, not stacked.
+
+Card 1:
+Tue, Jun 9
+Tomorrow · 4 tasks
+Submit application · Polish prototype
+
+Card 2:
+Wed, Jun 10
+Day After · 2 tasks
+Follow up · Rest/admin
+
+This section should be lower visual weight than Today but still readable.
+Do not make it too faint.
+Hovering over the section softly shades it.
+Clicking opens Planning page.
+
+RIGHT SUPPORT RAIL:
+The right rail must be visible on desktop.
+It must use the full height.
+It must not collapse.
+It must not be too faint.
+
+Right rail sections:
+
+1. First 3 Steps
+2. Future Unlock
+3. Dopamine
+4. Your Wins
+5. Daily Shutdown
+
+FIRST 3 STEPS:
+Top of right rail, aligned with Today content area.
+
+Title:
+“First 3 Steps”
+
+Task reference:
+“Build homepage prototype”
+
+Steps:
+1 Open Replit
+2 Build shell
+3 Add right rail
+
+Each step:
+
+* soft hover shade
+* click → focus that step
+
+FUTURE UNLOCK:
+Title:
+“Future Unlock”
+
+Show this exact connection:
+Build homepage prototype
+↓
+Replit submission
+
+* possible interview
+
+Do not add “conversation.”
+Do not add “future possibility.”
+Do not add “dopamine unlock.”
+Keep it simple, concrete, motivating.
+
+DOPAMINE:
+One word only:
+“Dopamine”
+Click opens popup.
+
+YOUR WINS + DAILY SHUTDOWN:
+These must be grouped at the bottom-right.
+
+Your Wins:
+
+* visible
+* readable
+* directly above Daily Shutdown
+* normal spacing, about 12–16px gap
+* click → stats/wins page
+
+Daily Shutdown:
+
+* visible
+* readable
+* bottom-right
+* horizontally aligned with Bonnie L on the left nav baseline
+* click → shutdown modal
+
+This bottom alignment is important:
+Bonnie L on left bottom and Daily Shutdown on right bottom should sit on the same horizontal baseline.
+
+INTERACTIONS:
+Every clickable item gets a soft hover shade on web.
+
+Click behavior:
+
+* Home → Home page
+* Planning → Planning page
+* Focus → Focus page
+* High / Medium / Low / Brain Dump / Done → expand/filter
+* Task rows → focus that task
+* Current focus card → task detail drawer
+* Start focus → focus mode
+* First 3 Steps rows → focus that step
+* Future Unlock → full map page
+* Dopamine → popup
+* Your Wins → stats/wins page
+* Daily Shutdown → modal
+* Bonnie L → account menu
+* Next 2 Days → Planning page
+* * Add task → add task modal
+
+RESPONSIVE:
+For this Replit build, prioritize desktop web.
+Do not add a bottom mobile nav in the desktop view.
+If responsive styles are included, only switch to mobile below 768px.
+At desktop widths, always show the 3-column layout.
+
+FINAL CHECK BEFORE FINISHING:
+
+* 3 columns visible on desktop.
+* No bottom mobile nav.
+* Left nav is 240px.
+* Right rail is 320px.
+* Center starts 24px after left divider.
+* Right rail starts 24px after center.
+* Clear vertical separators.
+* Task icons visible everywhere tasks appear.
+* Today’s Flow blocks have full soft background colors.
+* Current task row highlighted.
+* Next 2 Days is two side-by-side cards.
+* Bonnie L text only, bottom-left.
+* Daily Shutdown bottom-right, aligned with Bonnie L.
+* Your Wins directly above Daily Shutdown.
+* Dopamine one word only.
+* Future Unlock says exactly: Replit submission + possible interview.
+* System icons are stroke-only, no fill.
+* Priority icons are hollow rings only.
+* Progress percent is inside/on the progress bar.
+* Top time uses fixed mock state: 2:34 PM / 5h 26m until 8:00 PM.
+  Build the homepage UI prototype now.

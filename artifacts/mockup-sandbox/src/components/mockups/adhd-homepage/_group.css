@@ -1,0 +1,85 @@
+:root {
+  --font-primary: 'Atkinson Hyperlegible', 'Nunito Sans', sans-serif;
+  
+  --mint-bg: rgba(191, 239, 219, 0.22);
+  --mint-bg-fade: rgba(191, 239, 219, 0.04);
+  
+  --color-morning: #FFE59A;
+  --color-afternoon: #BFEFDB;
+  --color-evening: #D8D2FF;
+
+  --color-high: #EF4444;
+  --color-medium: #F59E0B;
+  --color-low: #3B82F6;
+  --color-braindump: #A78BFA;
+  --color-done: #10B981;
+  
+  --text-main: #1F2937;
+  --text-muted: #9CA3AF;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+.hover-bg:hover {
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+.hover-text:hover {
+  color: #000 !important;
+}
+
+.nav-item {
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.nav-item.active {
+  background-color: rgba(191, 239, 219, 0.4);
+}
+
+.flow-block {
+  position: relative;
+}
+
+.flow-line {
+  position: absolute;
+  left: 14px;
+  top: 40px;
+  bottom: 20px;
+  width: 2px;
+  background-color: rgba(0,0,0,0.06);
+}
+
+.task-row {
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.task-row:hover {
+  background-color: rgba(255,255,255,0.4);
+}
+
+.task-row.active {
+  background-color: rgba(191, 239, 219, 0.6);
+  border-left: 3px solid #10B981;
+}
+
+.rail-card {
+  transition: transform 0.2s, background-color 0.2s;
+  cursor: pointer;
+}
+
+.rail-card:hover {
+  background-color: rgba(0,0,0,0.02);
+}
+
+.pill-button:hover {
+  background-color: rgba(0,0,0,0.05);
+}
