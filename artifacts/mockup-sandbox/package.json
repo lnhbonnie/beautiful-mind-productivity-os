@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "dev": "vite dev",
-    "build": "echo 'Skipping mockup-sandbox build: not production app'",
+    "build": "PORT=3000 BASE_PATH=/ vite build",
     "preview": "vite preview",
     "typecheck": "tsc -p tsconfig.json --noEmit"
   },
