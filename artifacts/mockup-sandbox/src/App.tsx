@@ -140,7 +140,12 @@ function App() {
     );
   }
 
-  return <Gallery />;
+  return (
+    <PreviewRenderer
+      componentPath="homepage/Homepage"
+      modules={discoveredModules}
+    />
+  );
 }
 
 export default App;
